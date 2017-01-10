@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拼图小游戏 -- vue学习</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="app">
+		<transition-group name="list" tag="ul" appear>
+			<li
+				v-for="(index, value) in lists"
+				:key="index"
+				:id="value"
+				:style="{
+					width : bulk.width + 'px',
+					height: bulk.width + 'px',
+					top   : Math.floor(value / bulk.num) * bulk.width + 'px',
+					left  : (value % bulk.num) * bulk.width + 'px',
+					zIndex : index == 0 ? '1' : '2',
+					backgroundImage : index == 0 ? '' : 'url(' + img + ')',
+					backgroundPosition : '-' + ((index % bulk.num) * bulk.width) + 'px -' + (Math.floor(index / bulk.num) * bulk.width) + 'px'
+				}"
+			>	
+			</li>
+		</transition-group>
+		<transition name="img" appear>
+			<!-- 拼图完成是显示完整的原图 -->
+			<div class="img" v-if="gameOver"><img :src="img" alt=""></div>
+		</transition>
+		<!-- ctrl -->
+		<div class="ctrl" data-info='这里是拼图的参数控制区域'>
+			<select v-model="num">
+				<option value="9">新手</option>
+				<option value="16">普通</option>
+				<option value="25">困难</option>
+				<option value="36">变态</option>
+			</select>
+			<select v-model="img">
+				<option value="images/1.jpg">图形1</option>
+				<option value="images/2.jpg">图形2</option>
+				<option value="images/3.jpg">图形3</option>
+				<option value="images/4.jpg">图形4</option>
+			</select>
+			<button @click="reset">打乱开始</button>
+			<div class="pt10">你走了<strong class="importantInfo">{{score}}</strong>步</div>
+		</div>
+		<!-- / ctrl -->
+		<div class="info" data-info='玩法说明区域'>
+			<strong>游戏说明：</strong>
+			<p>使用方向键 <strong class="importantInfo">↑ ← ↓ →</strong> 控制拼图移动</p>
+		</div>
+	</div>
+	<script src="js/lodash.min.js"></script>
+	<script src="js/vue.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
