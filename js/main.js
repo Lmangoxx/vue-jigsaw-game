@@ -1,5 +1,5 @@
 /*!
- * 拼图小游戏 (http://getbootstrap.com)
+ * 拼图小游戏
  * Author   : Lmango <277040350@qq.com>
  * Github   : https://github.com/Lmangoxx/vue-jigsaw-game
  * Created  : 10/1/2017
