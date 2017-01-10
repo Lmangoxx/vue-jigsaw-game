@@ -68,7 +68,8 @@ var jigsaw = new Vue({
 		},
 		move (g){ // 移动拼图
 			var index = this.lists.indexOf(0), // 获取空白拼图块的索引
-				_index = index + g; // 要移动的拼图块索引
+				_index = index + g, // 要移动的拼图块索引
+				z; 
 			if(_index < 0 || _index > this.num-1){ // 判断该拼图块是否可以移动
 				return;
 			}else if( g == 1 && _index % this.bulk.num == 0){
@@ -78,11 +79,12 @@ var jigsaw = new Vue({
 			}else {
 				this.moveing = true; // 如果可以移动，把移动状态改为true，防止频繁操作
 			}
-			this.lists[index] = this.lists[index] + this.lists[_index]; // 交换lists中index跟_index的值达到移动效果
-			this.lists[_index] = this.lists[index] - this.lists[_index];
-			this.lists[index] = this.lists[index] - this.lists[_index];
+			
+			var z = this.lists[index]; // 交换lists中index跟_index的值达到移动效果
+			this.$set(this.lists, index, this.lists[_index]); 
+			this.$set(this.lists, _index, z);
+
 			this.score += 1; // 步数+1
-			this.$forceUpdate(); // lists变化了，重新渲染dome
 			this.over(); // 判断是否拼图成功
 		},
 		over (){ // 判断是否拼图成功
