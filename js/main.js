@@ -80,9 +80,8 @@ var jigsaw = new Vue({
 				this.moveing = true; // 如果可以移动，把移动状态改为true，防止频繁操作
 			}
 			
-			var z = this.lists[index]; // 交换lists中index跟_index的值达到移动效果
 			this.$set(this.lists, index, this.lists[_index]); 
-			this.$set(this.lists, _index, z);
+			this.$set(this.lists, _index, 0);
 
 			this.score += 1; // 步数+1
 			this.over(); // 判断是否拼图成功
