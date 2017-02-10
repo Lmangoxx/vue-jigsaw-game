@@ -68,8 +68,8 @@ var jigsaw = new Vue({
 		},
 		move (g){ // 移动拼图
 			var index = this.lists.indexOf(0), // 获取空白拼图块的索引
-				_index = index + g, // 要移动的拼图块索引
-				z; 
+				_index = index + g; // 要移动的拼图块索引
+				
 			if(_index < 0 || _index > this.num-1){ // 判断该拼图块是否可以移动
 				return;
 			}else if( g == 1 && _index % this.bulk.num == 0){
